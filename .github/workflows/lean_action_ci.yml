@@ -11,4 +11,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1 # this will try and fetch the mathlib cache
+        with:
+            auto-config: false # don't automatically run lake build, lake test, lake lint
+      # use setup from lean-action to perform the following steps
+      - name: run `lake exe mk_all`
+        run: |
+          lake exe mk_all
       - uses: leanprover/lean-action@v1
